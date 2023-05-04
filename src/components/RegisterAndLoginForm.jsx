@@ -1,19 +1,21 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { UserContext } from "./Usercontext";
-
+import { Backdrop, CircularProgress} from '@material-ui/core';
 function RegisterAndLoginForm() {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [isLoginOrRegister, setIsLoginOrRegister] = useState('register');
     const {setId, setUsernameLogged} = useContext(UserContext);
+    const [pedding, setPedding] = useState(false);
     const registerUser = (e) => {
         e.preventDefault();
+        setPedding(true);
         axios.post('/register', {
             username,
             password
         }).then((response) => {
-            console.log(response);
+            setPedding(false);
             setUsernameLogged(response.data.result.username);
             setId(response.data.result.id)
         }).catch(e => {
@@ -24,10 +26,12 @@ function RegisterAndLoginForm() {
 
     const loginUser = (e) => {
         e.preventDefault();
+        setPedding(true);
         axios.post('/login', {
             username,
             password
         }).then((response) => {
+            setPedding(false);
             setUsernameLogged(response.data.result.username);
             setId(response.data.result.id)
         }).catch(e => {
@@ -38,6 +42,15 @@ function RegisterAndLoginForm() {
 
     return ( 
         <div className="bg-blue-50 h-screen  w-full flex items-center">
+            { pedding &&
+                <Backdrop
+                    sx={{ color: '#fff'}}
+                    open={true}
+                    style={{zIndex: 999}}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>     
+            }
            <form className="w-64 mx-auto" onSubmit={(e) => {
                 if(isLoginOrRegister === 'register') {
                     registerUser(e) 
