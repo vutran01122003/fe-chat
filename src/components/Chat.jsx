@@ -21,6 +21,7 @@ function Chat() {
         e.preventDefault();
         axios.get('/logout')
             .then(() => {
+                window.open(import.meta.env.VITE_API_BASE_URL + '/logout', '_blank');
                 setUsernameLogged('');
             })
             .catch((e) => {
