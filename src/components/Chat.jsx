@@ -12,7 +12,7 @@ function Chat() {
     const [messageTextValue, setMessageTextValue] = useState('');
     const [socketConnected, setSocketConnected] = useState(null);
     const [messages, setMessages] = useState([]);
-    const {id, usernameLogged} = useContext(UserContext);
+    const {id, usernameLogged, setUsernameLogged} = useContext(UserContext);
     const messageBoxRef = useRef();
     const messsageInputRef = useRef();
     const fileInput = useRef();
@@ -21,6 +21,7 @@ function Chat() {
         e.preventDefault();
         axios.post('/logout')
             .then(() => {
+                setUsernameLogged('');
                 window.location.href = import.meta.env.VITE_CLIENT_URL;
             })
             .catch((e) => {
