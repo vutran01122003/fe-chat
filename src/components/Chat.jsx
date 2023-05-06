@@ -19,8 +19,9 @@ function Chat() {
 
     const logoutUser = (e) => {
         e.preventDefault();
-        axios.post('/logout', {})
+        axios.get('/logout')
             .then(() => {
+                document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 setUsernameLogged('');
             })
             .catch((e) => {
