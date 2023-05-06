@@ -19,7 +19,7 @@ function RegisterAndLoginForm() {
             setUsernameLogged(response.data.result.username);
             setId(response.data.result.id)
         }).catch(e => {
-            console.log(e);
+            setPedding(false);
             alert('Đăng ký thất bại');
         })
     }
@@ -35,7 +35,7 @@ function RegisterAndLoginForm() {
             setUsernameLogged(response.data.result.username);
             setId(response.data.result.id)
         }).catch(e => {
-            console.log(e);
+            setPedding(false);
             alert('Đăng nhập thất bại');
         })
     }
