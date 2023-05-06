@@ -21,7 +21,8 @@ function Chat() {
         e.preventDefault();
         axios.get('/logout')
             .then(() => {
-                document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.href = import.meta.env.VITE_API_BASE_URL + '/logout';
+                window.location.href = import.meta.env.VITE_CLIENT_URL;
                 setUsernameLogged('');
             })
             .catch((e) => {
