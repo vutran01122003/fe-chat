@@ -11,6 +11,7 @@ export function UserContextProvider({ children }) {
         axios.get('/profile').then((response) => {
             setUsernameLogged(response.data.username);
             setId(response.data.id)
+
         }).catch(e => {
             // console.log(e);
         })

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./Usercontext";
 import { Backdrop, CircularProgress} from '@material-ui/core';
 function RegisterAndLoginForm() {
@@ -39,6 +39,16 @@ function RegisterAndLoginForm() {
             alert('Đăng nhập thất bại');
         })
     }
+
+    useEffect(() => {
+        axios.get('/logout')
+        .then(() => {
+            setUsernameLogged('');
+        })
+        .catch((e) => {
+            alert('logout thất bại')
+        })
+    }, []);
 
     return ( 
         <div className="bg-blue-50 h-screen  w-full flex items-center">
