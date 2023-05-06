@@ -19,7 +19,7 @@ function Chat() {
 
     const logoutUser = (e) => {
         e.preventDefault();
-        axios.post('/logout')
+        axios.get('/logout')
             .then(() => {
                 setUsernameLogged('');
             })
