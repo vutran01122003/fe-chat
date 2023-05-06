@@ -22,7 +22,6 @@ function Chat() {
         axios.post('/logout')
             .then(() => {
                 setUsernameLogged('');
-                window.location.href = import.meta.env.VITE_CLIENT_URL;
             })
             .catch((e) => {
                 alert('logout thất bại')
